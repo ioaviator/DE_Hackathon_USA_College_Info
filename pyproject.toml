@@ -1,0 +1,18 @@
+[project]
+name = "de-hackathon-usa-college-info"
+version = "0.1.0"
+description = "A data pipeline that automates the extraction, transformation, and storage of university-related information from the USA College Scorecard\u001b[D\u001b[a"
+authors = [
+    {name = "ioaviator",email = "ioaviator@mail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests (>=2.32.3,<3.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
