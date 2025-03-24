@@ -3,9 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.astro
 .terraform*
 credentials.txt
+packages.txt
 # folder
+plugins
+tests
 data
 data_store
 # C extensions
