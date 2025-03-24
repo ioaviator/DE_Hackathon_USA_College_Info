@@ -2,9 +2,8 @@ from io import BytesIO
 
 import polars as pl
 
-from database.db_setup import db_engine
-
 from .auth import blob_client
+from .database.db_setup import db_engine
 
 # from .config import data_dir
 
