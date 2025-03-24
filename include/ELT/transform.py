@@ -3,7 +3,6 @@ from io import BytesIO
 import polars as pl
 
 from .auth import blob_client
-from .database.db_setup import db_engine
 
 # from .config import data_dir
 
@@ -53,9 +52,5 @@ def transform_data():
     # school_df.write_csv(f"{data_dir}/processed_data.csv")
     # print(f"Json files transformed and loaded as parquet to {data_dir} folder")
 
-    school_df.write_database(
-        "top_1000_USA_schools", connection=db_engine, if_table_exists="replace"
-    )
-    print(f"Json files transformed and loaded to database")
+    return school_df
 
-    return True

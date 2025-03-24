@@ -1,6 +1,8 @@
 import pandas as pd
+import polars as pl
 
 from .auth import blob_service_client
+from .database.db_setup import db_engine
 
 
 def load_to_data_lake(data):
@@ -22,3 +24,13 @@ def load_to_data_lake(data):
   blob_client.upload_blob(parquet, overwrite=True)
   print('upload to storage account successful')
 
+  return None
+
+
+def load_to_db(data):
+  
+  data = pl.DataFrame(data)
+  data.write_database(
+      "top_1000_USA_schools", connection=db_engine, if_table_exists="replace"
+    )
+  print(f"Json files transformed and loaded to database")
