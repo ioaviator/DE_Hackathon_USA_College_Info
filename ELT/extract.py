@@ -1,6 +1,6 @@
 import requests
 
-from config import params, url
+from .config import params, url
 
 
 def api_connect():

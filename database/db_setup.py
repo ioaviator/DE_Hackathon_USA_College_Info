@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists
-from utils import db_password, db_username
+
+from .utils import db_password, db_username
 
 host='postgres-schools.postgres.database.azure.com'
 db_name='top_1000_schools'

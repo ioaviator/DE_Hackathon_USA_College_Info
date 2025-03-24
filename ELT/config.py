@@ -10,9 +10,9 @@ url=os.getenv('URL')
 api_key=os.getenv('API_KEY')
 
 #create data_store folder for api response
-parent_dir = Path(__file__).resolve().parent
-data_dir = parent_dir / "data_store"
-data_dir.mkdir(exist_ok=True)
+# parent_dir = Path(__file__).resolve().parent
+# data_dir = parent_dir / "data_store"
+# data_dir.mkdir(exist_ok=True)
 
 
 ## API request parameters

@@ -1,6 +1,6 @@
 import pandas as pd
 
-from auth import blob_service_client
+from .auth import blob_service_client
 
 
 def load_to_data_lake(data):

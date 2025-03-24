@@ -1,7 +1,7 @@
 
-from extract import api_connect
-from load import load_to_data_lake
-from transform import transform_data
+from ELT.extract import api_connect
+from ELT.load import load_to_data_lake
+from ELT.transform import transform_data
 
 
 def main():

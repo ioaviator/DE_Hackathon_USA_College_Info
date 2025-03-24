@@ -2,9 +2,11 @@ from io import BytesIO
 
 import polars as pl
 
-from auth import blob_client
-from config import data_dir
 from database.db_setup import db_engine
+
+from .auth import blob_client
+
+# from .config import data_dir
 
 
 def get_data_from_datalake():
@@ -49,8 +51,8 @@ def transform_data():
 
 
     # Load dataframe to parquet file
-    school_df.write_csv(f"{data_dir}/processed_data.csv")
-    print(f"Json files transformed and loaded as parquet to {data_dir} folder")
+    # school_df.write_csv(f"{data_dir}/processed_data.csv")
+    # print(f"Json files transformed and loaded as parquet to {data_dir} folder")
 
     school_df.write_database(
         "top_1000_USA_schools", connection=db_engine, if_table_exists="replace"
