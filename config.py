@@ -9,7 +9,6 @@ load_dotenv()
 url=os.getenv('URL')
 api_key=os.getenv('API_KEY')
 
-
 #create data_store folder for api response
 parent_dir = Path(__file__).resolve().parent
 data_dir = parent_dir / "data_store"
@@ -20,7 +19,7 @@ data_dir.mkdir(exist_ok=True)
 params = {
     "api_key": api_key,
     "_sort": "latest.admissions.admission_rate.overall:asc",
-    "_per_page": 3,
+    "_per_page": 10,
     "fields": ("id,school.name,"
       "latest.school.state,"
         "latest.academics.sat_scores.average.overall,"
