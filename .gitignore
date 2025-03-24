@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.terraform*
+credentials.txt
 # folder
 data
 data_store
