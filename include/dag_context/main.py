@@ -22,7 +22,7 @@ def transform(**context):
   task_instance.xcom_push(key="json_file", value=json_data)
 
 
-def load_to_db(**context):
+def db_load(**context):
   task_instance = context['ti']
   json = task_instance.xcom_pull(task_ids='data_transform',key='json_file')
   
