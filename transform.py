@@ -5,6 +5,7 @@ import os
 import polars as pl
 
 from config import data_dir
+from database.db_setup import db_engine
 
 # Get all JSON files in the data folder
 json_files = glob.glob(os.path.join(data_dir, "*.json"))
@@ -59,6 +60,11 @@ def transform_data():
     # Load dataframe to parquet file
     school_df.write_parquet(f"{data_dir}/processed_data.parquet")
     print(f"Json files transformed and loaded as parquet to {data_dir} folder")
+
+    school_df.write_database(
+        "top_1000_USA_schools", connection=db_engine, if_table_exists="replace"
+    )
+    print(f"Json files transformed and loaded to database")
 
     return True
 
