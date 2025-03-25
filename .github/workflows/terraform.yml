@@ -26,22 +26,22 @@ jobs:
        working-directory: ./terraform
 
     steps:
-     - name: Checkout the repository to the runner
-     - uses: actions/checkout@v3
-
-     - name: Setup Terraform with specified version on the runner
-     - uses: hashicorp/setup-terraform@v3
+      - name: Checkout the repository to the runner
+      - uses: actions/checkout@v3
+      
+      - name: Setup Terraform with specified version on the runner
+      - uses: hashicorp/setup-terraform@v3
     
     # Runs a single command using the runners shell
-     - name: 'Terraform init'
-       id: init
-       run: terraform init          
-
-     - name: 'Terraform plan'
-       id: plan
-       run: terraform plan
-                
-     - name: 'Terraform apply'
+      - name: 'Terraform init'
+        id: init
+        run: terraform init          
+      
+      - name: 'Terraform plan'
+        id: plan
+        run: terraform plan
+       
+       
+      - name: 'Terraform apply'
         id: apply
-        run: |
-          terraform apply --auto-approve 
+        run: terraform apply --auto-approve 
