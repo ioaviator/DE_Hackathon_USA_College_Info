@@ -27,10 +27,10 @@ jobs:
 
     steps:
       - name: Checkout the repository to the runner
-      - uses: actions/checkout@v3
+        uses: actions/checkout@v3
       
       - name: Setup Terraform with specified version on the runner
-      - uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v3
     
     # Runs a single command using the runners shell
       - name: 'Terraform init'
