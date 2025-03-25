@@ -6,21 +6,21 @@ from airflow import DAG
 from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 
+from include.dag_context.main import connect_to_api, db_load, load_data_to_data_lake
 from include.ELT.transform import transform_data
-from include.dag_context.main import (
-  connect_to_api, load_data_to_data_lake, db_load)
 
 sys.path.append(
     os.path.join(os.path.dirname(os.path.dirname(__file__)), "ETL"),
+)
+sys.path.append(
     os.path.join(os.path.dirname(os.path.dirname(__file__)), "dag_context")
 )
-
 
 
 default_args = {
     'owner': 'aviator',
     'depends_on_past': False,
-    'start_date': datetime(2025, 03, 24),
+    'start_date': datetime(2025, 3, 24),
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,

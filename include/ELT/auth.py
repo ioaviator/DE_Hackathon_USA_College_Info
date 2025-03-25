@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-account_name='top1000schools'
+account_name='top1000usaschools'
 account_url=f"https://{account_name}.blob.core.windows.net"
 
 account_key = os.getenv("ACCOUNT_KEY")
@@ -13,7 +13,7 @@ account_key = os.getenv("ACCOUNT_KEY")
   # Create a BlobServiceClient object
 blob_service_client = BlobServiceClient(account_url=account_url, credential=account_key)
 
-#################################################
+################################
 
 conn_string = os.getenv("CONN_STRING")
 blob_name = 'top_1000_usa_schools.parquet'
