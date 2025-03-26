@@ -1,7 +1,9 @@
 import os
-from pathlib import Path
 
 from dotenv import load_dotenv
+
+# from pathlib import Path
+
 
 load_dotenv()
 
@@ -15,7 +17,7 @@ api_key=os.getenv('API_KEY')
 # data_dir.mkdir(exist_ok=True)
 
 
-## API request parameters
+# API request parameters
 params = {
     "api_key": api_key,
     "_sort": "latest.admissions.admission_rate.overall:asc",

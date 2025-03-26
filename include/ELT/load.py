@@ -33,4 +33,6 @@ def load_to_db(data):
   data.write_database(
       "top_1000_USA_schools", connection=db_engine, if_table_exists="replace"
     )
-  print(f"Json files transformed and loaded to database")
+  print("Json files transformed and loaded to database")
+
+  return None

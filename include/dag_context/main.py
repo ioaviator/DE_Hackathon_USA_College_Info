@@ -9,11 +9,15 @@ def connect_to_api(**context):
   task_instance = context['ti']
   task_instance.xcom_push(key="json_file", value=json_data)
 
+  return None
+
 def load_data_to_data_lake(**context):
   task_instance = context['ti']
   json = task_instance.xcom_pull(task_ids='api_conect',key='json_file')
   
-  data = load_to_data_lake(json)
+  load_to_data_lake(json)
+
+  return None
 
 def transform(**context):
   json_data = transform_data()
@@ -21,9 +25,13 @@ def transform(**context):
   task_instance = context['ti']
   task_instance.xcom_push(key="json_file", value=json_data)
 
+  return None
+
 
 def db_load(**context):
   task_instance = context['ti']
   json = task_instance.xcom_pull(task_ids='data_transform',key='json_file')
   
-  data = load_to_db(json)
+  load_to_db(json)
+
+  return None
