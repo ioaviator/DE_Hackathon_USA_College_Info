@@ -37,7 +37,7 @@ cd DE_Hackathon_USA_College_Info
   az login 
 ```
 Take note of the subscription id and keep it safe
-![az login](./img/az_login.png)
+![az login](./_img/az_login.png)
 
 #### Step 3: Provision Azure  resource with Terraform
 <br>
@@ -83,9 +83,16 @@ Visit the [Score card website](https://collegescorecard.ed.gov/data/api-document
 
 Generate Azure blob `Account Key` and `Connection String`
 
-Acount Key: `az storage account keys list -g <ResourceGroupName> -n <StorageAccountName>`
+Acount Key: 
 
-Connection String: `az storage account show-connection-string --name <StorageAccountName> --resource-group <ResourceGroupName> --subscription <SubscriptionID>`
+```bash
+az storage account keys list -g <ResourceGroupName> -n <StorageAccountName>
+```
+
+Connection String: 
+```bash
+az storage account show-connection-string --name <StorageAccountName> --resource-group <ResourceGroupName> --subscription <SubscriptionID>
+```
 
 Add database username and password credentials
 ```bash
@@ -110,13 +117,19 @@ DB_PASSWORD=1e3q98q
 ------------------------------------------
   *Activate virtual environment*
 
-  Windows: `source venv\Scripts\activate`
+  Windows: 
+  ```bash
+  source venv\Scripts\activate
+  ```
 
-  Linux: `source venv/bin/activate`
+  Linux: 
+  ```bash
+  source venv/bin/activate
+  ```
 
 -------------------------------------
 
-  *Install Project Requirements*
+  ***Install Project Requirements***
 ```bash
 # Install Python packages
 astro dev python package-install <package-name>
@@ -135,7 +148,7 @@ From the project root directory
 python main.py
 ```
 <br>
-============================================
+=================================================
 
 ## Data Pipeline Architecture
 
