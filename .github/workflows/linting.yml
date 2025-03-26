@@ -28,8 +28,9 @@ jobs:
      
       - name: Format with black
         run: |
+          black main.py
           black include/* 
-          black include/ELT dags
+          black include/ELT include/ELT/*
       
       - name: Lint with flake8
         run: |
