@@ -1,0 +1,28 @@
+name: Container Registry
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Terraform Resource']
+    types: [completed]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Login to Azure'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: 'Build and push image'
+        run: |
+          docker build . -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/dechathon:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/dechathon:latest
