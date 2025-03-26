@@ -1,8 +1,9 @@
 name: Terraform Resource
 on:
-  workflow_run:
-    workflows: ['Code Linting and Formatting']
-    types: [completed]
+  # workflow_run:
+  #   workflows: ['Code Linting and Formatting']
+  #   types: [completed]
+  push:
     branches:
       - main
 
