@@ -56,3 +56,8 @@ resource "azurerm_postgresql_flexible_server_database" "pgdb" {
   }
 }
 
+module "container_registry" {
+  source = "./container_registry"
+  location = azurerm_resource_group.hackathonresource.location
+  resource_group_name = azurerm_resource_group.hackathonresource.name
+}
