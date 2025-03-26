@@ -1,7 +1,7 @@
 
 variable "resource_group_name" {
   description = "resource group container for all deployed azure services"
-  default     = "DE_hackathon"
+  default     = "hackathon"
 }
 
 variable "location" {
