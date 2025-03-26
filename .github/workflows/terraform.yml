@@ -40,8 +40,16 @@ jobs:
       - name: 'Terraform plan'
         id: plan
         run: terraform plan
-       
-       
-      - name: 'Terraform apply'
-        id: apply
-        run: terraform apply --auto-approve 
+      
+      - name: 'Terraform format'
+        id: format
+        run: terraform fmt
+         
+      - name: 'Terraform validate'
+        id: validate
+        run: terraform validate
+            
+
+      # - name: 'Terraform apply'
+      #   id: apply
+      #   run: terraform apply --auto-approve 

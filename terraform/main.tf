@@ -15,7 +15,7 @@ resource "azurerm_storage_account" "storage" {
 
 resource "azurerm_storage_container" "storagecontainer" {
   name                  = "raw"
-  storage_account_name    = azurerm_storage_account.storage.name
+  storage_account_name  = azurerm_storage_account.storage.name
   container_access_type = "private"
 }
 

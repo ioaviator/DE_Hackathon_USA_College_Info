@@ -13,13 +13,13 @@ variable "storage_account_name" {
 }
 
 variable "db_admin_login" {
-  type = string
+  type      = string
   sensitive = true
-  default = "adminadmin"
+  default   = "adminadmin"
 }
 
 variable "db_admin_pass" {
-  type = string
+  type      = string
   sensitive = true
-  default = "12345678He"
+  default   = "12345678He"
 }
