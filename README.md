@@ -203,6 +203,9 @@ AZURE_TENANT_ID='Azure Tenant Id'
 
 ![data pipeline](./_img/data_pipeline.gif)
 
+### Explore [Power BI Data Visualization](https://app.powerbi.com/view?r=eyJrIjoiMDJjNDBhNjgtN2U4NC00MmQ3LTg3MzUtNDZiNDE4MmM0ZDRkIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9)
+
+--------------------------------
 ### Key Components
 
 - Data Ingestion: API data extraction
