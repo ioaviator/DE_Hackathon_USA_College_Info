@@ -20,4 +20,20 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install black isort
+          pip install black isort flake8
+      
+      - name: Sort using isort
+        run: |
+          isort include/* --check --diff
+          isort dags/* --check --diff
+
+      - name: Format with black
+        run: |
+          black include/* 
+          black include/ELT dags
+      
+      - name: Lint with flake8
+        run: |
+          flake8 include dags  --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 include dags  --count --exit-zero --max-complexity=10 --max-line-length=100 --statistics
+
