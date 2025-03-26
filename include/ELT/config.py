@@ -1,9 +1,16 @@
+import logging
 import os
 
 from dotenv import load_dotenv
 
 # from pathlib import Path
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -18,10 +25,10 @@ api_key=os.getenv('API_KEY')
 
 
 # API request parameters
-params = {
+params:dict = {
     "api_key": api_key,
     "_sort": "latest.admissions.admission_rate.overall:asc",
-    "_per_page": 10,
+    "_per_page": 100,
     "fields": ("id,school.name,"
       "latest.school.state,"
         "latest.academics.sat_scores.average.overall,"

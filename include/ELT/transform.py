@@ -3,23 +3,39 @@ from io import BytesIO
 import polars as pl
 
 from .auth import blob_client
+from .config import logger
 
 # from .config import data_dir
 
 
-def get_data_from_datalake():
+def get_data_from_datalake()-> pl.DataFrame:
+    """
+    Downloads a parquet file from Azure Blob Storage 
+    and reads it into a Polars DataFrame.
+    
+    Returns:
+     pl.DataFrame: DataFrame read from the downloaded parquet file.
+    """
 
-  stream_downloader = blob_client.download_blob()
-  stream = BytesIO()
-  stream_downloader.readinto(stream)
-  parquet_data = pl.read_parquet(stream, use_pyarrow=True)
-  
-  return parquet_data
+    stream_downloader = blob_client.download_blob()
+    stream = BytesIO()
+    stream_downloader.readinto(stream)
+    parquet_data:pl.DataFrame = pl.read_parquet(stream, use_pyarrow=True)
+    
+    logger.info("Data downloaded from data lake successfully")
+    
+    return parquet_data
 
 
-def transform_data():
+def transform_data() -> pl.DataFrame:
+    """
+    Transforms the data by renaming columns and removing duplicates.
 
-    response_df = get_data_from_datalake()
+    Returns:
+        pl.DataFrame: Transformed Polars DataFrame.
+    """
+
+    response_df: pl.DataFrame = get_data_from_datalake()
 
     # Rename columns to lowercase
     response_df = response_df.rename(
@@ -27,7 +43,7 @@ def transform_data():
     )
    
     # rename dataframe columns
-    school_df = response_df.rename({
+    school_df:pl.DataFrame = response_df.rename({
         'latest.school.state':'state',
         'latest.school.degrees_awarded.predominant': 'predominant_degrees',
         'latest.school.degrees_awarded.highest':'highest_degree',
@@ -41,16 +57,15 @@ def transform_data():
         'school.name': 'school_name'
     })
     
-    # Verify changes
-    # print(school_df.columns)
-
     # Drop duplicate values
     school_df = school_df.unique()
 
 
     # Load dataframe to parquet file
-    # school_df.write_csv(f"{data_dir}/processed_data.csv")
+    # school_df.write_parquet(f"{data_dir}/processed_data.parquet")
     # print(f"Json files transformed and loaded as parquet to {data_dir} folder")
-
+    
+    logger.info("Data transformed successfully. Ready to be loaded to Database")
+    
     return school_df
 
