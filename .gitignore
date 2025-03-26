@@ -9,7 +9,6 @@ credentials.txt
 packages.txt
 # folder
 plugins
-tests
 data
 data_store
 # C extensions
