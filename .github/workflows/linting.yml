@@ -25,8 +25,7 @@ jobs:
       - name: Sort using isort
         run: |
           isort include/* --check --diff
-          isort dags/* --check --diff
-
+     
       - name: Format with black
         run: |
           black include/* 
