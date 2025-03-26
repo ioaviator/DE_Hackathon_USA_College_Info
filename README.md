@@ -72,14 +72,14 @@ provider "azurerm" {
 `change directory (cd)` into the terraform directory from the terminal. Run the following commands
 
 - Initialize: `terraform init`
-- Plan: `terraform plan`
-- Apply: `terraform apply`
+- Plan: `terraform plan -out main.tfplan`
+- Apply: `terraform apply --auto-approve main.tfplan`
 
 #### Step 4: Create and Configure environment variables
 
 Create a `.env` file at the project root directory. Add this file to `.gitignore`
 
-Visit the [Score card website](https://collegescorecard.ed.gov/data/api-documentation/) and generate an API key
+Visit the [Score card website](https://collegescorecard.ed.gov/data/api-documentation/) to generate an API key
 
 Generate Azure blob `Account Key` and `Connection String`
 
@@ -130,6 +130,11 @@ DB_PASSWORD=1e3q98q
 -------------------------------------
 
   ***Install Project Requirements***
+
+  ```bash
+    pip install -r requirements.txt
+  ```
+  Using Astro
 ```bash
 # Install Python packages
 astro dev python package-install <package-name>
@@ -148,6 +153,50 @@ From the project root directory
 python main.py
 ```
 <br>
+
+## Github Actions Deployment
+
+#### Generate environment secrets
+`Azure Client Id`, `Azure Client Secret`,`Azure Tenant Id`, `Registry Login Server`, `Registry Username`, `Registry Password`
+
+- Create a Service Principal or App Registration
+
+```bash
+az ad sp create-for-rbac --name "SP-GitHubAction" --role contributor --scopes /subscriptions/{subscriptionid} --sdk-auth
+```
+- Copy the `client id`, `client secret`, `subscription id`, `tenant id` keys, and keep them secured
+<br>
+
+  ![service principal](./_img/service_principal.png)
+
+- Generate credentials for an Azure Container Registry.
+```bash
+az acr credential show -n <ContainerRegistryName>
+```
+- Copy first password and username values
+- Registry LOGIN_SERVER value is `<YourAzureContainerName>.azurecr.io`
+
+### Creating required GitHub secrets
+
+- To create the secret in GitHub, goto github repository and then click on “Settings.” Click on “Secrets and Variables,” “Actions,” and “New repository secret.”
+- `ADMIN_LOGIN` and `ADMIN_PASS` represent your Azure PostgreSQL credentials. Make sure to enable FIREWALL RULES for your PostgreSQL database in Azure portal
+
+<br>
+
+Here are the expected secrets to be added to Github 
+```bash
+REGISTRY_LOGIN_SERVER='Azure Container Registry Server (e.g: ContainerRegistryName.azurecr.io)'
+REGISTRY_USERNAME='Azure Container Registry Username'
+REGISTRY_PASSWORD='Azure Container Registry Password'
+ADMIN_LOGIN='Azure PostgreSQL login name'
+ADMIN_PASS='Azure PostgreSQL password'
+AZURE_CLIENT_ID='Azure Entra ID(Active Directory) Client Id'
+AZURE_CLIENT_SECRET='Azure Entra Id Client Secret'
+AZURE_SUBSCRIPTION='Azure Subscriptiion Id'
+AZURE_TENANT_ID='Azure Tenant Id'
+```
+![github actions secrets config](./_img/github%20actions.png)
+
 =================================================
 
 ## Data Pipeline Architecture
@@ -214,6 +263,6 @@ python main.py
 
  **isort**
   - Automatically sorts Python imports
-  - Organizes imports into sections (standard library, third-party, local)
+  - Imports are grouped into sections (standard library, third-party, local)
   - Maintains consistent import ordering
   - Improves code readability

@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout the repository to the runner
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Setup Terraform with specified version on the runner
         uses: hashicorp/setup-terraform@v3
@@ -41,7 +41,7 @@ jobs:
       
       - name: 'Terraform plan'
         id: plan
-        run: terraform plan
+        run: terraform plan -out main.tfplan
       
       - name: 'Terraform format'
         id: format
@@ -50,8 +50,7 @@ jobs:
       - name: 'Terraform validate'
         id: validate
         run: terraform validate
-            
 
-      # - name: 'Terraform apply'
-      #   id: apply
-      #   run: terraform apply --auto-approve 
+      - name: 'Terraform apply'
+        id: apply
+        run: terraform apply --auto-approve main.tfplan  
